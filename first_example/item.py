@@ -11,12 +11,11 @@ class Item():
         if price <= 0:
             raise ValueError('Ivalid Price')
 
-        instance.unit_price = price
+        if quantity <= 0:
+            raise ValueError('Ivalid Quantity')
 
-        if quantity > 0:
-            instance.quantity = quantity
-        else:
-            instance.quantity = 0
+        instance.unit_price = price
+        instance.quantity = quantity
 
         return instance
 
@@ -37,6 +36,10 @@ class Item():
         total = (self.unit_price * self.quantity) - discount
         return total
 
+    @staticmethod
+    def reduceTotal(sub_total, price):
+        return sub_total + price
+
 
 if __name__ == '__main__':
     milk = Item("Milk", "1 Gallon Milk", 2, 2.5)
@@ -46,15 +49,15 @@ if __name__ == '__main__':
 
     milk.discount = 0.15
 
-    prices = [
+    prices = (
         milk.total,
         yogurt.total,
         bread.total,
         soap.total
-    ]
+    )
 
     total = reduce(
-        lambda sub_total, price: sub_total + price,
+        Item.reduceTotal,
         prices
     )
 
