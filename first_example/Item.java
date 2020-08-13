@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Item {
     private double unit_price;
     private double discount;
@@ -64,18 +66,23 @@ public class Item {
     
         milk.setDiscount(0.15);
 
-        double milkTotal = milk.getTotal();
-        double yougurtTotal = yogurt.getTotal();
-        double breadTotal = bread.getTotal();
-        double soapTotal = soap.getTotal();
-        double total = milkTotal + yougurtTotal + breadTotal + soapTotal;
+        List<Double> prices = Arrays.asList(
+            milk.getTotal(),
+            yogurt.getTotal(),
+            bread.getTotal(),
+            soap.getTotal()
+        );
+
+        double total = prices.stream().reduce(
+            0.0, (subTotal, price) -> subTotal + price
+        );
     
         System.out.println("Thank You For Your Purchase.");
         System.out.println("Please Come Again!");
-        System.out.println(milk.getDescription() + "\t $" + milkTotal);
-        System.out.println(yogurt.getDescription() + "\t $" + yougurtTotal);
-        System.out.println(bread.getDescription() + "\t $" + breadTotal);
-        System.out.println(soap.getDescription() + "\t $" + soapTotal);
+        System.out.println(milk.getDescription() + "\t $" + milk.getTotal());
+        System.out.println(yogurt.getDescription() + "\t $" + yogurt.getTotal());
+        System.out.println(bread.getDescription() + "\t $" + bread.getTotal());
+
         System.out.println("Total Price \t $" + total);
     }
 
