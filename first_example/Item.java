@@ -25,32 +25,12 @@ public class Item {
         return total;
     }
 
-    public double getDiscount() {
-        return discount;
-    }
-
     public void setDiscount(double discount) {
         if (discount <= 1.0) {
             this.discount = discount;
         } else {
             this.discount = 0.0;
         }
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        if (quantity > 0) {
-            this.quantity = quantity;
-        } else {
-            this.quantity = 0;
-        }
-    } 
-
-    public String getProductID() {
-        return id;
     }
 
     public String getDescription() {
@@ -82,7 +62,6 @@ public class Item {
         System.out.println(milk.getDescription() + "\t $" + milk.getTotal());
         System.out.println(yogurt.getDescription() + "\t $" + yogurt.getTotal());
         System.out.println(bread.getDescription() + "\t $" + bread.getTotal());
-
         System.out.println("Total Price \t $" + total);
     }
 
