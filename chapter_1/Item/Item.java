@@ -1,4 +1,3 @@
-package item;
 import java.util.*;
 
 public class Item {
