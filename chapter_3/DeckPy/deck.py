@@ -63,6 +63,9 @@ class Deck:
     def __setitem__(self, key, value):
         self.replace(key, value)
 
+    def __bool__(self):
+        return len(self.cards) > 0
+
     def __iter__(self):
         for card in self.cards:
             yield card
