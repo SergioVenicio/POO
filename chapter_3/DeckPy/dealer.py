@@ -13,7 +13,7 @@ class Dealer:
         self.deck = _deck
 
     def deal_card(self):
-        if len(self.deck) > 0:
+        if self.deck:
             return self.deck.remove_from_front()
 
     def __str__(self):
@@ -21,3 +21,12 @@ class Dealer:
 
     def __repr__(self):
         return str(self.deck)
+
+
+class DishonestDealer(Dealer):
+    def shuffle(self):
+        pass
+
+    def deal_card(self):
+        if self.deck:
+            return self.deck.get(0)
